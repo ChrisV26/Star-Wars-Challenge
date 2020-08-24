@@ -8,23 +8,44 @@ import android.widget.TextView;
 
 import com.chris.swapi.R;
 import com.chris.swapi.model.People;
+import com.chris.swapi.view.MainActivity;
+import com.chris.swapi.viewmodel.PeopleViewModel;
 
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
+import androidx.paging.PagedListAdapter;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CharactersAdapter extends
-        RecyclerView.Adapter<CharactersAdapter.CharacterViewHolder> {
+        PagedListAdapter<People,CharactersAdapter.CharacterViewHolder> {
 
     private Context mContext;
     private ArrayList<People> mPeopleList;
+    private PeopleViewModel mPeopleViewModel;
 
-    public CharactersAdapter(Context context,ArrayList<People> peopleArrayList) {
+    public CharactersAdapter(Context context,PeopleViewModel PeopleViewModel) {
+        super(DIFF_CALLBACK);
         this.mContext=context;
-        this.mPeopleList=peopleArrayList;
+        //this.mPeopleList=peopleArrayList;
+        mPeopleViewModel=PeopleViewModel;
     }
 
+    private static DiffUtil.ItemCallback<People> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<People>() {
+                @Override
+                public boolean areItemsTheSame(People oldItem, People newItem) {
+                    if (oldItem == null || newItem == null) return false;
+                    return oldItem == newItem;
+                }
+
+                @Override
+                public boolean areContentsTheSame(People oldItem, People newItem) {
+                    if (oldItem == null || newItem == null) return false;
+                    return oldItem.name.equals(newItem.name);
+                }
+            };
 
     /**
      * Called when RecyclerView needs a new ViewHolder of the given type to
@@ -36,12 +57,13 @@ public class CharactersAdapter extends
      */
     @NonNull
     @Override
-    public CharactersAdapter.CharacterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CharacterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflate an item people view
         View mItemView=LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.item_people,parent,false);
         return new CharacterViewHolder(mItemView,this);
     }
+
 
     /**
      * Called by RecyclerView to display the data at the specified position.
@@ -54,22 +76,27 @@ public class CharactersAdapter extends
      * @param position The position of the item within the adapter's data set.
      */
     @Override
-    public void onBindViewHolder(@NonNull CharactersAdapter.CharacterViewHolder holder, int position) {
-        People currentPeople=mPeopleList.get(position);
+    public void onBindViewHolder(@NonNull CharacterViewHolder holder, int position) {
+        //People currentPeople=mPeopleList.get(position);
+        People currentPeople=getItem(position);
         holder.mCharacterItemView.setText(currentPeople.getName());
     }
 
+    /**
+     * Returns the total number of items in the data set held by the adapter.
+     *
+     * @return The total number of items in this adapter.
+     */
     @Override
     public int getItemCount() {
-        return mPeopleList.size();
+        //return mPeopleList.size();
+        return super.getItemCount();
     }
 
 
-    static class CharacterViewHolder extends RecyclerView.ViewHolder
-    {
+     class CharacterViewHolder extends RecyclerView.ViewHolder {
         final TextView mCharacterItemView;
         final CharactersAdapter mAdapter;
-
 
 
         /**
@@ -87,10 +114,6 @@ public class CharactersAdapter extends
             //itemView.setOnClickListener(this);
         }
 
-
-
-
     }
-
 
 }

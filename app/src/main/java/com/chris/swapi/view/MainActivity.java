@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,45 +31,52 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayoutManager mLayoutManager;
     private ProgressBar mProgressBar;
 
-    public MainActivity() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
+        setupListAdapter();
         getCharacters();
+
 
     }
 
-    private void init() {
-
-        mProgressBar=findViewById(R.id.progress_bar);
-        mRecyclerView = findViewById(R.id.main_recycler_view);
+    private void setupListAdapter() {
 
         mLayoutManager= new LinearLayoutManager(MainActivity.this);
+        mProgressBar=findViewById(R.id.progress_bar);
+
+        mRecyclerView = findViewById(R.id.main_recycler_view);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        mCharactersAdapter=new CharactersAdapter(MainActivity.this,mPeopleArrayList);
-        mRecyclerView.setAdapter(mCharactersAdapter);
 
+        //mCharactersAdapter=new CharactersAdapter(MainActivity.this,mPeopleArrayList);
+        mCharactersAdapter=new CharactersAdapter(this,mPeopleViewModel);
+        mRecyclerView.setAdapter(mCharactersAdapter);
         mPeopleViewModel = new ViewModelProvider(this).get(PeopleViewModel.class);
 
-}
+    }
 
     public void getCharacters()
     {
-        mPeopleViewModel.getSWModelListResponseLiveData().observe(this, swModelList -> {
-            if(swModelList!=null)
-            {
+       /* mPeopleViewModel.getSWModelListResponseLiveData().observe(this, swModelList -> {
+            if (swModelList != null) {
                 mProgressBar.setVisibility(View.GONE);
-                List<People> characters=swModelList.getResults();
+                List<People> characters = swModelList.getResults();
                 mPeopleArrayList.addAll(characters);
                 mCharactersAdapter.notifyDataSetChanged();
             }
-        });
+        });*/
+
+       mPeopleViewModel.itemPagedList.observe(this, new Observer<PagedList<People>>() {
+           @Override
+           public void onChanged(PagedList<People> people) {
+               mProgressBar.setVisibility(View.GONE);
+               mCharactersAdapter.submitList(people);
+           }
+       });
     }
 
 }

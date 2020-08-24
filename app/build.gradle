@@ -38,6 +38,8 @@ def retrofitVersion='2.4.0'
 def glideVersion = '4.10.0'
 def androidxVersion = '1.1.0'
 def lifeCycleExtensionsVersion = '1.1.1'
+def pagingVersion='2.1.2'
+def superRecyclerVersion='1.1.4'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -59,6 +61,9 @@ dependencies {
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
 
+    //Paging Library
+    implementation "androidx.paging:paging-runtime:$pagingVersion"
+
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
@@ -67,6 +72,8 @@ dependencies {
     // Glide for Image Support
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
+    implementation "com.malinskiy:superrecyclerview:$superRecyclerVersion"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

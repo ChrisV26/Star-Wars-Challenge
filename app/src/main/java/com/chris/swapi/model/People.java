@@ -3,7 +3,6 @@ package com.chris.swapi.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,13 +12,13 @@ public class People{
 
     @SerializedName("name")
     @Expose
-    private String name;
+    public String name;
     @SerializedName("height")
     @Expose
-    private int height;
+    private String height;
     @SerializedName("mass")
     @Expose
-    private int mass;
+    private String mass;
     @SerializedName("hair_color")
     @Expose
     private String hairColor;
@@ -58,19 +57,19 @@ public class People{
         this.name = name;
     }
 
-    public Integer getHeight() {
+    public String getHeight() {
         return height;
     }
 
-    public void setHeight(Integer height) {
+    public void setHeight(String height) {
         this.height = height;
     }
 
-    public Integer getMass() {
+    public String getMass() {
         return mass;
     }
 
-    public void setMass(Integer mass) {
+    public void setMass(String mass) {
         this.mass = mass;
     }
 

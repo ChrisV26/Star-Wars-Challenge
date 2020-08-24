@@ -1,18 +1,20 @@
 package com.chris.swapi.model;
 
+import android.text.TextUtils;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 /**
- * Root Response from API
+ * Response from API
  */
 public class SWModelList {
 
     @SerializedName("count")
     @Expose
-    private Integer count;
+    private int count;
 
     @SerializedName("next")
     @Expose
@@ -57,6 +59,10 @@ public class SWModelList {
 
     public void setPrevious(String previous) {
         this.previous = previous;
+    }
+
+    public boolean hasMore() {
+        return !TextUtils.isEmpty(next);
     }
 
 }
