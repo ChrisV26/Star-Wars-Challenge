@@ -3,12 +3,14 @@ package com.chris.swapi.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Model class People which represents an individual character within the Star Wars Universe
  */
-public class People{
+public class People implements Serializable {
 
     @SerializedName("name")
     @Expose
@@ -39,13 +41,13 @@ public class People{
     private String homeWorldUrl;
     @SerializedName("films")
     @Expose
-    private List<String> filmsUrls = null;
+    private ArrayList<String> filmsUrls = null;
 
-    public List<String> getRelatedFilms() {
+    public ArrayList<String> getRelatedFilms() {
         return filmsUrls;
     }
 
-    public void setRelatedFilms(List<String> filmsUrls) {
+    public void setRelatedFilms(ArrayList<String> filmsUrls) {
         this.filmsUrls = filmsUrls;
     }
 

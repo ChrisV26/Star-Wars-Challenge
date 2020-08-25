@@ -1,12 +1,8 @@
 package com.chris.swapi.adapter;
 
 import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
-import com.chris.swapi.R;
-import com.chris.swapi.databinding.ItemPeopleBinding;
 import com.chris.swapi.model.People;
 import com.chris.swapi.viewmodel.PeopleViewModel;
 

@@ -5,6 +5,7 @@ import android.app.Application;
 import com.chris.swapi.model.People;
 import com.chris.swapi.paging.ItemDataSourceFactory;
 import com.chris.swapi.paging.SwapiPeopleDataSource;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;

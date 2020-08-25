@@ -18,7 +18,7 @@ public class SwapiPeopleDataSource extends PageKeyedDataSource<Integer, People> 
     private static final int FIRST_PAGE = 1;
 
     /**
-     * Sync request in order to laod the initial batch of data
+     * Sync request in order to load the initial page of data
      * @param params
      * @param callback
      */

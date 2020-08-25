@@ -6,9 +6,11 @@ public class StarWarsFilmsUtils {
      * @param filmsUrl url from Model Class People
      */
     public static String filmUrlToFilmTitle(String filmsUrl) {
-        int filmId;
+       int filmId;
         try {
-            filmId = filmsUrl.charAt(filmsUrl.length()-2);
+            //filmId = filmsUrl.charAt(filmsUrl.length()-1);
+            String [] string=filmsUrl.split("/");
+           filmId= Integer.parseInt(string[string.length-1]);
         } catch (Exception e) {
             return null;
         }

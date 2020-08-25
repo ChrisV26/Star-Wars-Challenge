@@ -21,8 +21,8 @@ android {
         }
     }
 
-    dataBinding{
-        enabled=true
+    dataBinding {
+        enabled = true
     }
 
     compileOptions {
@@ -33,11 +33,11 @@ android {
 }
 
 def lifecycle_version = "2.2.0"
-def retrofitVersion='2.4.0'
+def retrofitVersion = '2.4.0'
 def androidxVersion = '1.1.0'
 def lifeCycleExtensionsVersion = '1.1.1'
-def pagingVersion='2.1.2'
-def cardViewVersion='1.0.0'
+def pagingVersion = '2.1.2'
+def cardViewVersion = '1.0.0'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
