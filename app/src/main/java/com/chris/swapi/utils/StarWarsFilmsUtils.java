@@ -2,7 +2,7 @@ package com.chris.swapi.utils;
 
 public class StarWarsFilmsUtils {
 
-    /** Method to relate Films URL to String
+    /** Method to relate Films URL to respected Movie Title
      * @param filmsUrl url from Model Class People
      */
     public static String filmUrlToFilmTitle(String filmsUrl) {

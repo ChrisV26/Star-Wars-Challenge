@@ -1,9 +1,8 @@
-package com.chris.swapi.adapter;
+package com.chris.swapi.paging;
 
 import com.chris.swapi.model.People;
 import com.chris.swapi.model.SWModelList;
 import com.chris.swapi.network.RetrofitInstance;
-import com.chris.swapi.network.ServiceRepository;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,6 +17,11 @@ public class SwapiPeopleDataSource extends PageKeyedDataSource<Integer, People> 
 
     private static final int FIRST_PAGE = 1;
 
+    /**
+     * Sync request in order to laod the initial batch of data
+     * @param params
+     * @param callback
+     */
     @Override
     public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull LoadInitialCallback<Integer, People> callback) {
        Call<SWModelList> request;
@@ -37,6 +41,11 @@ public class SwapiPeopleDataSource extends PageKeyedDataSource<Integer, People> 
 
     }
 
+    /**
+     * Async request in order to fetch the next pages of data
+     * @param params
+     * @param callback
+     */
     @Override
     public void loadAfter(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, People> callback) {
         RetrofitInstance.getRetrofitInstance().getStarWarsAPI().getAllPeople(params.key)

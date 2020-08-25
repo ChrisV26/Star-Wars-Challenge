@@ -28,7 +28,6 @@ public class SWModelList {
     @Expose
     private List<People> results=null;
 
-
     public void setResults(List<People> results) {
         this.results = results;
     }

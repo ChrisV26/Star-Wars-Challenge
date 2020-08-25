@@ -1,4 +1,4 @@
-package com.chris.swapi.adapter;
+package com.chris.swapi.paging;
 
 import com.chris.swapi.model.People;
 

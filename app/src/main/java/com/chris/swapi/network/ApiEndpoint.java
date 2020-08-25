@@ -7,10 +7,11 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 /**
- *  Define endpoint-> ex: https://swapi.dev/api/people/
+ *  Define endpoint
  */
 public interface ApiEndpoint {
 
+    // ex: https://swapi.dev/api/people/?page
     @GET("people/")
     Call<SWModelList> getAllPeople(@Query("page") int page);
 
