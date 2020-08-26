@@ -9,8 +9,6 @@ import com.chris.swapi.databinding.ItemPeopleBinding;
 import com.chris.swapi.model.People;
 import com.chris.swapi.view.RelatedMoviesView;
 
-import java.util.ArrayList;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CharacterViewHolder extends RecyclerView.ViewHolder {
@@ -33,6 +31,7 @@ public class CharacterViewHolder extends RecyclerView.ViewHolder {
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // sent Character Name and the movies he was part of to the RelatedMoviesView Activity
                 Intent intent=new Intent(view.getContext(), RelatedMoviesView.class);
                 intent.putExtra("NameID",people.getName());
                 intent.putStringArrayListExtra("RelatedMovieFilms",people.getRelatedFilms());

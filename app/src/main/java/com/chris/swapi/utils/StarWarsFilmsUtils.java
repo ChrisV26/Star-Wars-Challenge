@@ -8,11 +8,11 @@ public class StarWarsFilmsUtils {
     public static String filmUrlToFilmTitle(String filmsUrl) {
        int filmId;
         try {
-            //filmId = filmsUrl.charAt(filmsUrl.length()-1);
+            //get the id of the film, example: "https://swapi.dev/api/films/2/"
             String [] string=filmsUrl.split("/");
-           filmId= Integer.parseInt(string[string.length-1]);
+            filmId= Integer.parseInt(string[string.length-1]);
         } catch (Exception e) {
-            return null;
+            return e.getMessage();
         }
         switch (filmId) {
             case 1:

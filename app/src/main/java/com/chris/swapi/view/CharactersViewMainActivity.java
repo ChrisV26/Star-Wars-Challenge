@@ -30,7 +30,7 @@ public class CharactersViewMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupListAdapter();
-        getCharacters();
+        setupListOfCharacters();
     }
 
     private void setupListAdapter() {
@@ -49,7 +49,7 @@ public class CharactersViewMainActivity extends AppCompatActivity {
 
     }
 
-    public void getCharacters()
+    public void setupListOfCharacters()
     {
        mPeopleViewModel.itemPagedList.observe(this, new Observer<PagedList<People>>() {
            @Override

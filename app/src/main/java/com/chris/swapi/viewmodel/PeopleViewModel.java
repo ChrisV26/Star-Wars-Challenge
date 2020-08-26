@@ -30,7 +30,5 @@ public class PeopleViewModel extends AndroidViewModel {
         itemPagedList=(new LivePagedListBuilder(itemDataSourceFactory,pagedListConfig))
                 .build();
 
-
     }
-
 }

@@ -1,6 +1,5 @@
 package com.chris.swapi.utils;
 
-
 /**
  * Define Constant Variables
  */

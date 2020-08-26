@@ -1,7 +1,6 @@
 package com.chris.swapi.paging;
 
 import com.chris.swapi.model.People;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.paging.DataSource;

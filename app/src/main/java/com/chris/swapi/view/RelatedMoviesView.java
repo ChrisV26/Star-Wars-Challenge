@@ -20,7 +20,10 @@ private ActivityRelatedMoviesViewBinding mActivityRelatedMoviesViewBinding;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivityRelatedMoviesViewBinding=DataBindingUtil.setContentView(this,R.layout.activity_related_movies_view);
+        setupRelatedMovieTitles();
+    }
 
+    private void setupRelatedMovieTitles() {
         Intent intent = getIntent();
         final String mCharacterNameID=intent.getExtras().getString("NameID");
         mActivityRelatedMoviesViewBinding.characterTitleView.setText(mCharacterNameID);
@@ -29,9 +32,11 @@ private ActivityRelatedMoviesViewBinding mActivityRelatedMoviesViewBinding;
         for(int i=0; i<list.size(); i++)
         {
             String movie_title=list.get(i);
+            // associate movie url to movie title and add them to the the list
             movie_title_array.add(StarWarsFilmsUtils.filmUrlToFilmTitle(movie_title));
 
         }
+        // Build a multiline text for a single text view
         StringBuilder builder=new StringBuilder();
         for (String s : movie_title_array) {
             builder.append(s).append("\n");
