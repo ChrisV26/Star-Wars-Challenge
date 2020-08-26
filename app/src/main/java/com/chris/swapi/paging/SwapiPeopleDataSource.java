@@ -13,14 +13,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ *  Incremental data loader for page-keyed content,
+ *  where requests return keys for next/previous pages.
+ */
 public class SwapiPeopleDataSource extends PageKeyedDataSource<Integer, People> {
 
+    // variable to query the first page
     private static final int FIRST_PAGE = 1;
 
     /**
      * Sync request in order to load the initial page of data
-     * @param params
-     * @param callback
      */
     @Override
     public void loadInitial(@NonNull LoadInitialParams<Integer> params, @NonNull LoadInitialCallback<Integer, People> callback) {
@@ -29,22 +32,20 @@ public class SwapiPeopleDataSource extends PageKeyedDataSource<Integer, People> 
        try {
            Response<SWModelList> response=request.execute();
            SWModelList data=response.body();
-           List<People> peopleList=data.getResults();
+           List<People> peopleList= data != null ? data.getResults() : null;
            callback.onResult(peopleList,null,FIRST_PAGE+1);
        } catch (IOException e) {
-           e.printStackTrace();
+           e.getMessage();
        }
     }
 
     @Override
     public void loadBefore(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, People> callback) {
-
+        // not utilized since we append only to initial load
     }
 
     /**
      * Async request in order to fetch the next pages of data
-     * @param params
-     * @param callback
      */
     @Override
     public void loadAfter(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, People> callback) {
@@ -60,7 +61,7 @@ public class SwapiPeopleDataSource extends PageKeyedDataSource<Integer, People> 
 
                     @Override
                     public void onFailure(Call<SWModelList> call, Throwable t) {
-                        t.printStackTrace();
+                        t.getMessage();
                     }
                 });
     }

@@ -6,9 +6,7 @@ import android.os.Bundle;
 import com.chris.swapi.R;
 import com.chris.swapi.databinding.ActivityRelatedMoviesViewBinding;
 import com.chris.swapi.utils.StarWarsFilmsUtils;
-
 import java.util.ArrayList;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
@@ -26,19 +24,21 @@ private ActivityRelatedMoviesViewBinding mActivityRelatedMoviesViewBinding;
     private void setupRelatedMovieTitles() {
         Intent intent = getIntent();
         final String mCharacterNameID=intent.getExtras().getString("NameID");
-        mActivityRelatedMoviesViewBinding.characterTitleView.setText(mCharacterNameID);
         ArrayList<String> list=intent.getStringArrayListExtra("RelatedMovieFilms");
-        ArrayList<String> movie_title_array = new ArrayList<>();
+
+        mActivityRelatedMoviesViewBinding.characterTitleView.setText(mCharacterNameID);
+
+        ArrayList<String> movieTitleArray = new ArrayList<>();
         for(int i=0; i<list.size(); i++)
         {
             String movie_title=list.get(i);
             // associate movie url to movie title and add them to the the list
-            movie_title_array.add(StarWarsFilmsUtils.filmUrlToFilmTitle(movie_title));
+            movieTitleArray.add(StarWarsFilmsUtils.filmUrlToFilmTitle(movie_title));
 
         }
         // Build a multiline text for a single text view
         StringBuilder builder=new StringBuilder();
-        for (String s : movie_title_array) {
+        for (String s : movieTitleArray) {
             builder.append(s).append("\n");
             mActivityRelatedMoviesViewBinding.movieTitleView.setText(builder.toString());
         }

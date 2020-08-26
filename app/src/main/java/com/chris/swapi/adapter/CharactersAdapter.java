@@ -83,5 +83,4 @@ public class CharactersAdapter extends
                     return oldItem.name.equals(newItem.name);
                 }
             };
-
 }

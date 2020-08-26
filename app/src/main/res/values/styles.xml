@@ -6,13 +6,8 @@
         <item name="colorPrimary">@color/colorStarWarsYellow</item>
         <item name="colorPrimaryDark">@color/colorStarWarsDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
-    <!-- Label Text of Application  -->
-    <style name="MyActionBar" parent="@style/TextAppearance.AppCompat">
         <item name="android:textColor">@color/colorStarWarsGrey</item>
         <item name="android:textStyle">bold</item>
     </style>
-
 
 </resources>

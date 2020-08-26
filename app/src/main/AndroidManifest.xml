@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chris.swapi">
 
+    <!-- Permission to access Internet in order to use the API -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.RelatedMoviesView" />
+
+        <!-- Main/Home Activity -->
         <activity android:name=".view.CharactersViewMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,9 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
 
-    <!-- Permission to access Internet in order to use the API -->
-    <uses-permission android:name="android.permission.INTERNET" />
+        <!-- Child Activity-->
+        <activity
+            android:name=".view.RelatedMoviesView"
+            android:label="@string/child_activity_name"
+            android:parentActivityName=".view.CharactersViewMainActivity">
+        </activity>
+    </application>
 
 </manifest>

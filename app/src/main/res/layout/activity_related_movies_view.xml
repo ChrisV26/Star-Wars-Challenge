@@ -20,6 +20,7 @@
             app:layout_constraintEnd_toStartOf="@+id/character_title_view"
             app:layout_constraintStart_toStartOf="@+id/character_title_view">
 
+
             <TextView
                 android:id="@+id/character_title_view"
                 android:layout_width="wrap_content"

@@ -20,8 +20,6 @@ public class CharactersViewMainActivity extends AppCompatActivity {
 
     private PeopleViewModel mPeopleViewModel;
     private CharactersAdapter mCharactersAdapter;
-    private RecyclerView mRecyclerView;
-    private LinearLayoutManager mLayoutManager;
     private ProgressBar mProgressBar;
 
 
@@ -35,10 +33,10 @@ public class CharactersViewMainActivity extends AppCompatActivity {
 
     private void setupListAdapter() {
 
-        mLayoutManager= new LinearLayoutManager(CharactersViewMainActivity.this);
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(CharactersViewMainActivity.this);
         mProgressBar=findViewById(R.id.progress_bar);
 
-        mRecyclerView = findViewById(R.id.main_recycler_view);
+        RecyclerView mRecyclerView = findViewById(R.id.main_recycler_view);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setHasFixedSize(true);
 
