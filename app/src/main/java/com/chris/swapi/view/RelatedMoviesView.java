@@ -22,20 +22,21 @@ private ActivityRelatedMoviesViewBinding mActivityRelatedMoviesViewBinding;
         mActivityRelatedMoviesViewBinding=DataBindingUtil.setContentView(this,R.layout.activity_related_movies_view);
 
         Intent intent = getIntent();
-       final String mCharacterNameID=intent.getExtras().getString("NameID");
-       mActivityRelatedMoviesViewBinding.characterTitleView.setText(mCharacterNameID);
+        final String mCharacterNameID=intent.getExtras().getString("NameID");
+        mActivityRelatedMoviesViewBinding.characterTitleView.setText(mCharacterNameID);
         ArrayList<String> list=intent.getStringArrayListExtra("RelatedMovieFilms");
-        String[] movie_title_array =new String[6];
+        ArrayList<String> movie_title_array = new ArrayList<>();
         for(int i=0; i<list.size(); i++)
         {
             String movie_title=list.get(i);
-            movie_title_array[i]= StarWarsFilmsUtils.filmUrlToFilmTitle(movie_title);
+            movie_title_array.add(StarWarsFilmsUtils.filmUrlToFilmTitle(movie_title));
 
         }
+        StringBuilder builder=new StringBuilder();
         for (String s : movie_title_array) {
-            mActivityRelatedMoviesViewBinding.movieTitleView.setText(s);
+            builder.append(s).append("\n");
+            mActivityRelatedMoviesViewBinding.movieTitleView.setText(builder.toString());
         }
         mActivityRelatedMoviesViewBinding.executePendingBindings();
-
     }
 }
