@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Star Wars Challenge </string>
-    <string name="child_activity_name"> Movies List </string>
+    <string name="child_activity_name"> List of Movies </string>
 </resources>
